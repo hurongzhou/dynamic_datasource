@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.entity.Student" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="english_name" property="englishName" jdbcType="VARCHAR" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="login_email" property="loginEmail" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="father_name" property="fatherName" jdbcType="VARCHAR" />
+    <result column="father_tel" property="fatherTel" jdbcType="VARCHAR" />
+    <result column="points" property="points" jdbcType="INTEGER" />
+    <result column="qq_num" property="qqNum" jdbcType="VARCHAR" />
+    <result column="wexin_num" property="wexinNum" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="post_num" property="postNum" jdbcType="VARCHAR" />
+    <result column="mater_name" property="materName" jdbcType="VARCHAR" />
+    <result column="mater_tel" property="materTel" jdbcType="VARCHAR" />
+    <result column="identify_num" property="identifyNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, student_id, student_name, class_name, english_name, login_name, login_password, 
+    sex, login_email, birthday, address, father_name, father_tel, points, qq_num, wexin_num, 
+    grade, post_num, mater_name, mater_tel, identify_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.entity.Student" >
+    insert into student (id, student_id, student_name, 
+      class_name, english_name, login_name, 
+      login_password, sex, login_email, 
+      birthday, address, father_name, 
+      father_tel, points, qq_num, 
+      wexin_num, grade, post_num, 
+      mater_name, mater_tel, identify_num
+      )
+    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, 
+      #{className,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{loginPassword,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{loginEmail,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{fatherName,jdbcType=VARCHAR}, 
+      #{fatherTel,jdbcType=VARCHAR}, #{points,jdbcType=INTEGER}, #{qqNum,jdbcType=VARCHAR}, 
+      #{wexinNum,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{postNum,jdbcType=VARCHAR}, 
+      #{materName,jdbcType=VARCHAR}, #{materTel,jdbcType=VARCHAR}, #{identifyNum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.entity.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="className != null" >
+        class_name,
+      </if>
+      <if test="englishName != null" >
+        english_name,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="loginPassword != null" >
+        login_password,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="loginEmail != null" >
+        login_email,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="fatherName != null" >
+        father_name,
+      </if>
+      <if test="fatherTel != null" >
+        father_tel,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+      <if test="qqNum != null" >
+        qq_num,
+      </if>
+      <if test="wexinNum != null" >
+        wexin_num,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="postNum != null" >
+        post_num,
+      </if>
+      <if test="materName != null" >
+        mater_name,
+      </if>
+      <if test="materTel != null" >
+        mater_tel,
+      </if>
+      <if test="identifyNum != null" >
+        identify_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null" >
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="loginEmail != null" >
+        #{loginEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null" >
+        #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherTel != null" >
+        #{fatherTel,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="qqNum != null" >
+        #{qqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wexinNum != null" >
+        #{wexinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="postNum != null" >
+        #{postNum,jdbcType=VARCHAR},
+      </if>
+      <if test="materName != null" >
+        #{materName,jdbcType=VARCHAR},
+      </if>
+      <if test="materTel != null" >
+        #{materTel,jdbcType=VARCHAR},
+      </if>
+      <if test="identifyNum != null" >
+        #{identifyNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.entity.Student" >
+    update student
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null" >
+        english_name = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="loginEmail != null" >
+        login_email = #{loginEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null" >
+        father_name = #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherTel != null" >
+        father_tel = #{fatherTel,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null" >
+        points = #{points,jdbcType=INTEGER},
+      </if>
+      <if test="qqNum != null" >
+        qq_num = #{qqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wexinNum != null" >
+        wexin_num = #{wexinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="postNum != null" >
+        post_num = #{postNum,jdbcType=VARCHAR},
+      </if>
+      <if test="materName != null" >
+        mater_name = #{materName,jdbcType=VARCHAR},
+      </if>
+      <if test="materTel != null" >
+        mater_tel = #{materTel,jdbcType=VARCHAR},
+      </if>
+      <if test="identifyNum != null" >
+        identify_num = #{identifyNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.entity.Student" >
+    update student
+    set student_id = #{studentId,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
+      english_name = #{englishName,jdbcType=VARCHAR},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      login_email = #{loginEmail,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      father_name = #{fatherName,jdbcType=VARCHAR},
+      father_tel = #{fatherTel,jdbcType=VARCHAR},
+      points = #{points,jdbcType=INTEGER},
+      qq_num = #{qqNum,jdbcType=VARCHAR},
+      wexin_num = #{wexinNum,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER},
+      post_num = #{postNum,jdbcType=VARCHAR},
+      mater_name = #{materName,jdbcType=VARCHAR},
+      mater_tel = #{materTel,jdbcType=VARCHAR},
+      identify_num = #{identifyNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

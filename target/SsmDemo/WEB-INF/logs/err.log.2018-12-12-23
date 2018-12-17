@@ -1,0 +1,2 @@
+2018-12-12 23:12:38 [http-nio-8080-exec-4] - com.ssm.controller.StudentController[queryOne](39) [ERROR]  NullPoint====
+2018-12-12 23:15:12 [http-nio-8080-exec-2] - com.ssm.controller.StudentController[queryOne](39) [ERROR]  NullPoint====
