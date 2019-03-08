@@ -1,6 +1,7 @@
 package com.ssm.controller;
 
 import com.ssm.entity.Student;
+import com.ssm.listener.MQClient;
 import com.ssm.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +20,15 @@ public class StudentController {
     private static final Logger logger=LoggerFactory.getLogger(StudentController.class);
     @Resource
     StudentService studentService;
+    @Resource
+    MQClient mqClient;
 
     @RequestMapping("aaa")
     @ResponseBody
     public String aaa(){
-        Student student=new Student();
-        student.setStudentId("hu123");
-        student.setStudentName("huhu");
-        studentService.addOne(student);
+        for (int i=1;i<500;i++){
+            mqClient.sendMsg("Hello RabbitMQ!!!");
+        }
         logger.info("=============aaa==========");
         return "aaa";
     }

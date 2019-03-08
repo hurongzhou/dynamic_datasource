@@ -57,7 +57,7 @@
       #{materName,jdbcType=VARCHAR}, #{materTel,jdbcType=VARCHAR}, #{identifyNum,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ssm.entity.Student" >
+  <insert id="oneSelective" parameterType="com.ssm.entity.Student" >
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

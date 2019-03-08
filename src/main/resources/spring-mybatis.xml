@@ -89,7 +89,7 @@
         <!-- 切点 管理所有Service的方法 -->
         <aop:pointcut expression="execution(* com.ssm.service.*Service.*(..))" id="transactionPointCut" />
         <!-- 进行事务控制 Advisor -->
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointCut" />
+        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointCut" />-->
 
         <!-- 动态数据源aop,  aop:advisor配置一定要在  aop:aspect之前，否则报错    -->
         <aop:aspect ref="dynamicDataSourceAOP">
@@ -111,5 +111,7 @@
         <property name="basePackage" value="com.ssm.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
+
+    <import resource="classpath*:mq-contex.xml" />
 
 </beans>

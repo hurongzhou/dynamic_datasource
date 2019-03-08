@@ -18,8 +18,8 @@ public class StudentServiceImpl implements StudentService {
     StudentMapper studentMapper;
 
     @Override
-    public void addOne(Student student) {
-        studentMapper.insertSelective(student);
+    public void one(Student student) {
+        studentMapper.oneSelective(student);
     }
 
     @Override

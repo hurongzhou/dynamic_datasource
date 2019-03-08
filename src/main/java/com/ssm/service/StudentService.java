@@ -8,7 +8,7 @@ import com.ssm.entity.Student;
  */
 public interface StudentService {
 
-    void addOne(Student student);
+    void one(Student student);
 
     Student queryById(Integer primaryKey);
 }

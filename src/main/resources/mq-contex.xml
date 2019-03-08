@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+    <!--配置connection-factory，指定连接rabbit server参数 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               username="guest" password="guest" host="127.0.0.1" port="5672" />
+
+    <!--通过指定下面的admin信息，当前proceducer中的exchange和queue会在rabbitmq服务器上自动生成 -->
+    <rabbit:admin connection-factory="connectionFactory" />
+
+    <!--定义queue -->
+    <rabbit:queue id="queueTest.speiyou" durable="true" auto-delete="false" exclusive="false" name="queueTest.speiyou"/>
+
+    <!-- 消息接收者 -->
+    <bean id="messageReceiver" class="com.ssm.listener.TestListener"></bean>
+
+
+    <!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
+    <rabbit:listener-container connection-factory="connectionFactory" concurrency="5">
+        <rabbit:listener queues="queueTest.speiyou" ref="messageReceiver"/>
+    </rabbit:listener-container>
+
+    <!--exchange queue binging key-->
+    <rabbit:direct-exchange name="stone-exchange" durable="true" auto-delete="false" id="stone-exchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="queueTest.speiyou" key="rabbit_test"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!--定义rabbit template用于数据的接收和发送 -->
+    <rabbit:template exchange="stone-exchange" id="amqpTemplate" connection-factory="connectionFactory"/>
+
+</beans>
